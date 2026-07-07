@@ -127,35 +127,35 @@
   const questions = [
     // ========== NHẬN BIẾT (Câu 1-5) ==========
     {
-      q: '\\text{T\u00ECm nguy\u00EAn h\u00E0m c\u1EE7a h\u00E0m s\u1ED1 } f(x) = x^4.',
+      q: '\\text{Tìm nguyên hàm của hàm số } f(x) = x^4.',
       opts: ['A. \\int x^4 dx = 4x^3 + C', 'B. \\int x^4 dx = \\frac{x^5}{5} + C', 'C. \\int x^4 dx = x^5 + C', 'D. \\int x^4 dx = \\frac{x^4}{4} + C'],
       ans: 1,
       lvl: 'NB',
-      exp: '\\int x^n dx = \\frac{x^{n+1}}{n+1} + C \\ (n \\neq -1). \\text{ V\u1EDBi } n=4: \\int x^4 dx = \\frac{x^5}{5} + C.'
+      exp: '\\int x^n dx = \\frac{x^{n+1}}{n+1} + C \\ (n \\neq -1). \\text{ Với } n=4: \\int x^4 dx = \\frac{x^5}{5} + C.'
     },
     {
-      q: '\\text{T\u00EDch ph\u00E2n } I = \\int_{1}^{2} 3x^2 dx \\text{ b\u1EB1ng:}',
+      q: '\\text{Tích phân } I = \\int_{1}^{2} 3x^2 dx \\text{ bằng:}',
       opts: ['A. 6', 'B. 7', 'C. 8', 'D. 9'],
       ans: 1,
       lvl: 'NB',
       exp: '\\int_{1}^{2} 3x^2 dx = \\left. x^3 \\right|_{1}^{2} = 2^3 - 1^3 = 8 - 1 = 7.'
     },
     {
-      q: '\\text{Cho } \\int_{a}^{b} f(x) dx = 5 \\text{ v\u00E0 } \\int_{b}^{c} f(x) dx = 3. \\text{ T\u00EDnh } \\int_{a}^{c} f(x) dx.',
+      q: '\\text{Cho } \\int_{a}^{b} f(x) dx = 5 \\text{ và } \\int_{b}^{c} f(x) dx = 3. \\text{ Tính } \\int_{a}^{c} f(x) dx.',
       opts: ['A. 2', 'B. 8', 'C. 15', 'D. -2'],
       ans: 1,
       lvl: 'NB',
       exp: '\\int_{a}^{c} f(x) dx = \\int_{a}^{b} f(x) dx + \\int_{b}^{c} f(x) dx = 5 + 3 = 8.'
     },
     {
-      q: '\\text{Nguy\u00EAn h\u00E0m c\u1EE7a h\u00E0m s\u1ED1 } f(x) = \\cos x \\text{ l\u00E0:}',
+      q: '\\text{Nguyên hàm của hàm số } f(x) = \\cos x \\text{ là:}',
       opts: ['A. \\sin x + C', 'B. -\\sin x + C', 'C. \\tan x + C', 'D. -\\cos x + C'],
       ans: 0,
       lvl: 'NB',
       exp: '\\int \\cos x \\, dx = \\sin x + C.'
     },
     {
-      q: '\\text{T\u00EDch ph\u00E2n } I = \\int_{0}^{\\pi} \\sin x \\, dx \\text{ b\u1EB1ng:}',
+      q: '\\text{Tích phân } I = \\int_{0}^{\\pi} \\sin x \\, dx \\text{ bằng:}',
       opts: ['A. 0', 'B. 1', 'C. 2', 'D. -1'],
       ans: 2,
       lvl: 'NB',
@@ -163,35 +163,35 @@
     },
     // ========== THÔNG HIỂU (Câu 6-10) ==========
     {
-      q: '\\text{T\u00EDch ph\u00E2n } I = \\int_{0}^{1} e^{2x} dx \\text{ b\u1EB1ng:}',
+      q: '\\text{Tích phân } I = \\int_{0}^{1} e^{2x} dx \\text{ bằng:}',
       opts: ['A. \\frac{e^2 - 1}{2}', 'B. e^2 - 1', 'C. \\frac{e^2 + 1}{2}', 'D. e^2'],
       ans: 0,
       lvl: 'TH',
       exp: '\\int_{0}^{1} e^{2x} dx = \\left. \\frac{e^{2x}}{2} \\right|_{0}^{1} = \\frac{e^2}{2} - \\frac{1}{2} = \\frac{e^2 - 1}{2}.'
     },
     {
-      q: '\\text{Cho } \\int_{0}^{2} f(x) dx = 4. \\text{ T\u00EDnh } \\int_{0}^{2} [3f(x) - 2] dx.',
+      q: '\\text{Cho } \\int_{0}^{2} f(x) dx = 4. \\text{ Tính } \\int_{0}^{2} [3f(x) - 2] dx.',
       opts: ['A. 10', 'B. 8', 'C. 12', 'D. 6'],
       ans: 1,
       lvl: 'TH',
       exp: '\\int_{0}^{2} [3f(x) - 2] dx = 3\\int_{0}^{2} f(x) dx - \\int_{0}^{2} 2 dx = 3\\cdot4 - \\left. 2x \\right|_{0}^{2} = 12 - 4 = 8.'
     },
     {
-      q: '\\int_{0}^{1} x(x^2 + 1)^4 dx \\text{ b\u1EB1ng:}',
+      q: '\\int_{0}^{1} x(x^2 + 1)^4 dx \\text{ bằng:}',
       opts: ['A. \\frac{31}{5}', 'B. \\frac{31}{10}', 'C. \\frac{31}{15}', 'D. \\frac{31}{2}'],
       ans: 1,
       lvl: 'TH',
-      exp: '\\text{{\u0110}ặt } u = x^2+1 \\Rightarrow du = 2x dx. \\text{ Khi } x=0 \\to u=1; x=1 \\to u=2.\\ I = \\int_{1}^{2} \\frac{u^4}{2} du = \\left. \\frac{u^5}{10} \\right|_{1}^{2} = \\frac{32-1}{10} = \\frac{31}{10}.'
+      exp: '\\text{Đặt } u = x^2+1 \\Rightarrow du = 2x dx. \\text{ Khi } x=0 \\to u=1; x=1 \\to u=2.\\\\ I = \\int_{1}^{2} \\frac{u^4}{2} du = \\left. \\frac{u^5}{10} \\right|_{1}^{2} = \\frac{32-1}{10} = \\frac{31}{10}.'
     },
     {
-      q: '\\text{H\u1ECD} nguy\u00EAn h\u00E0m c\u1EE7a h\u00E0m s\u1ED1 } f(x) = \\frac{1}{x} \\ (x > 0) \\text{ l\u00E0:}',
+      q: '\\text{Họ nguyên hàm của hàm số } f(x) = \\frac{1}{x} \\ (x > 0) \\text{ là:}',
       opts: ['A. \\ln|x| + C', 'B. \\ln x + C', 'C. -\\frac{1}{x^2} + C', 'D. \\frac{1}{2x^2} + C'],
       ans: 1,
       lvl: 'TH',
-      exp: '\\int \\frac{1}{x} dx = \\ln x + C \\ (\\text{v\u1EDBi } x > 0). \\text{T\u1ED5ng qu\u00E1t: } \\int \\frac{1}{x} dx = \\ln|x| + C.'
+      exp: '\\int \\frac{1}{x} dx = \\ln x + C \\ (\\text{với } x > 0). \\text{Tổng quát: } \\int \\frac{1}{x} dx = \\ln|x| + C.'
     },
     {
-      q: '\\text{N\u1EBFu } \\int_{0}^{3} f(x) dx = 2 \\text{ v\u00E0 } \\int_{0}^{3} g(x) dx = -1, \\text{ th\u00EC } \\int_{0}^{3} [f(x) - 2g(x)] dx \\text{ b\u1EB1ng:}',
+      q: '\\text{Nếu } \\int_{0}^{3} f(x) dx = 2 \\text{ và } \\int_{0}^{3} g(x) dx = -1, \\text{ thì } \\int_{0}^{3} [f(x) - 2g(x)] dx \\text{ bằng:}',
       opts: ['A. 0', 'B. 4', 'C. 1', 'D. -4'],
       ans: 1,
       lvl: 'TH',
@@ -199,35 +199,35 @@
     },
     // ========== VẬN DỤNG (Câu 11-15) ==========
     {
-      q: '\\text{T\u00EDch ph\u00E2n } I = \\int_{1}^{e} \\frac{\\ln x}{x} dx \\text{ b\u1EB1ng:}',
+      q: '\\text{Tích phân } I = \\int_{1}^{e} \\frac{\\ln x}{x} dx \\text{ bằng:}',
       opts: ['A. \\frac{1}{2}', 'B. 1', 'C. \\frac{1}{e}', 'D. \\frac{1}{3}'],
       ans: 0,
       lvl: 'VD',
-      exp: '\\text{{\u0110}ặt } u = \\ln x \\Rightarrow du = \\frac{1}{x}dx. \\, x=1\\to u=0; x=e\\to u=1.\\ I = \\int_{0}^{1} u \\, du = \\left. \\frac{u^2}{2} \\right|_{0}^{1} = \\frac{1}{2}.'
+      exp: '\\text{Đặt } u = \\ln x \\Rightarrow du = \\frac{1}{x}dx. \\, x=1\\to u=0; x=e\\to u=1.\\\\ I = \\int_{0}^{1} u \\, du = \\left. \\frac{u^2}{2} \\right|_{0}^{1} = \\frac{1}{2}.'
     },
     {
-      q: '\\text{T\u00EDnh di\u1EC7n t\u00EDch h\u00ECnh ph\u1EB3ng gi\u1EDBi h\u1EA1n b\u1EDFi } y = x^2 - 1, \\, y = 0, \\, x = 0, \\, x = 2.',
+      q: '\\text{Tính diện tích hình phẳng giới hạn bởi } y = x^2 - 1, \\, y = 0, \\, x = 0, \\, x = 2.',
       opts: ['A. \\frac{2}{3}', 'B. \\frac{4}{3}', 'C. 2', 'D. \\frac{8}{3}'],
       ans: 2,
       lvl: 'VD',
-      exp: 'S = \\int_{0}^{2} |x^2 - 1| dx = \\int_{0}^{1} (1-x^2) dx + \\int_{1}^{2} (x^2-1) dx \\\ = \\left[x-\\frac{x^3}{3}\\right]_{0}^{1} + \\left[\\frac{x^3}{3} - x\\right]_{1}^{2} \\ = \\left(1-\\frac13\\right) + \\left(\\frac83-2\\right) - \\left(\\frac13-1\\right) = 2.'
+      exp: 'S = \\int_{0}^{2} |x^2 - 1| dx = \\int_{0}^{1} (1-x^2) dx + \\int_{1}^{2} (x^2-1) dx \\\\ = \\left[x-\\frac{x^3}{3}\\right]_{0}^{1} + \\left[\\frac{x^3}{3} - x\\right]_{1}^{2} \\\\ = \\left(1-\\frac13\\right) + \\left(\\frac83-2\\right) - \\left(\\frac13-1\\right) = 2.'
     },
     {
-      q: '\\text{Cho } \\int_{0}^{\\pi} x\\sin x \\, dx = a\\pi. \\text{ Gi\u00E1 tr\u1ECB c\u1EE7a } a \\text{ l\u00E0:}',
+      q: '\\text{Cho } \\int_{0}^{\\pi} x\\sin x \\, dx = a\\pi. \\text{ Giá trị của } a \\text{ là:}',
       opts: ['A. 1', 'B. 2', 'C. \\frac12', 'D. \\frac14'],
       ans: 0,
       lvl: 'VD',
-      exp: '\\text{D\u00F9ng t\u00EDch ph\u00E2n t\u1EEBng ph\u1EA7n: } \\begin{cases} u = x \\Rightarrow du = dx \\\\ dv = \\sin x \\, dx \\Rightarrow v = -\\cos x \\end{cases} \\\\ \\int_{0}^{\\pi} x\\sin x \\, dx = \\left. -x\\cos x \\right|_{0}^{\\pi} + \\int_{0}^{\\pi} \\cos x \\, dx \\\\ = (-\\pi\\cos\\pi - 0) + \\left. \\sin x \\right|_{0}^{\\pi} = \\pi + 0 = \\pi \\Rightarrow a = 1.'
+      exp: '\\text{Dùng tích phân từng phần: } \\begin{cases} u = x \\Rightarrow du = dx \\\\ dv = \\sin x \\, dx \\Rightarrow v = -\\cos x \\end{cases} \\\\ \\int_{0}^{\\pi} x\\sin x \\, dx = \\left. -x\\cos x \\right|_{0}^{\\pi} + \\int_{0}^{\\pi} \\cos x \\, dx \\\\ = (-\\pi\\cos\\pi - 0) + \\left. \\sin x \\right|_{0}^{\\pi} = \\pi + 0 = \\pi \\Rightarrow a = 1.'
     },
     {
-      q: '\\text{Th\u1EC3 t\u00EDch kh\u1ED1i tr\u00F2n xoay khi quay h\u00ECnh ph\u1EB3ng gi\u1EDBi h\u1EA1n b\u1EDFi } y = \\sqrt{x}, \\, y = 0, \\, x = 4 \\text{ quanh tr\u1EE5c Ox l\u00E0:}',
+      q: '\\text{Thể tích khối tròn xoay khi quay hình phẳng giới hạn bởi } y = \\sqrt{x}, \\, y = 0, \\, x = 4 \\text{ quanh trục Ox là:}',
       opts: ['A. 8\\pi', 'B. 4\\pi', 'C. 16\\pi', 'D. 2\\pi'],
       ans: 0,
       lvl: 'VD',
       exp: 'V = \\pi \\int_{0}^{4} (\\sqrt{x})^2 dx = \\pi \\int_{0}^{4} x \\, dx = \\pi \\left. \\frac{x^2}{2} \\right|_{0}^{4} = \\pi \\cdot \\frac{16}{2} = 8\\pi.'
     },
     {
-      q: '\\text{T\u00EDch ph\u00E2n } I = \\int_{0}^{\\frac{\\pi}{2}} \\sin^2 x \\, dx \\text{ b\u1EB1ng:}',
+      q: '\\text{Tích phân } I = \\int_{0}^{\\frac{\\pi}{2}} \\sin^2 x \\, dx \\text{ bằng:}',
       opts: ['A. \\frac{\\pi}{4}', 'B. \\frac{\\pi}{2}', 'C. \\frac{\\pi}{8}', 'D. \\frac{\\pi}{6}'],
       ans: 0,
       lvl: 'VD',
@@ -235,59 +235,55 @@
     },
     // ========== VẬN DỤNG CAO (Câu 16-20) ==========
     {
-      q: '\\text{Cho } \\int_{0}^{1} \\frac{dx}{x^2 + 1} = \\frac{\\pi}{k}. \\text{Gi\u00E1 tr\u1ECB c\u1EE7a } k \\text{ l\u00E0:}',
+      q: '\\text{Cho } \\int_{0}^{1} \\frac{dx}{x^2 + 1} = \\frac{\\pi}{k}. \\text{Giá trị của } k \\text{ là:}',
       opts: ['A. 2', 'B. 4', 'C. 1', 'D. 6'],
       ans: 1,
       lvl: 'VDC',
       exp: '\\int \\frac{dx}{x^2+1} = \\arctan x + C \\Rightarrow \\int_{0}^{1} \\frac{dx}{x^2+1} = \\left. \\arctan x \\right|_{0}^{1} = \\frac{\\pi}{4} - 0 = \\frac{\\pi}{4} \\Rightarrow k = 4.'
     },
     {
-      q: '\\text{Di\u1EC7n t\u00EDch h\u00ECnh ph\u1EB3ng gi\u1EDBi h\u1EA1n b\u1EDFi } y = x^2 - 2x \\text{ v\u00E0 } y = -x^2 + 4x \\text{ l\u00E0:}',
+      q: '\\text{Diện tích hình phẳng giới hạn bởi } y = x^2 - 2x \\text{ và } y = -x^2 + 4x \\text{ là:}',
       opts: ['A. 9', 'B. 12', 'C. 8', 'D. 6'],
       ans: 0,
       lvl: 'VDC',
-      exp: '\\text{PT ho\u00E0nh \u0111\u1ED9 giao \u0111i\u1EC3m: } x^2 - 2x = -x^2 + 4x \\Leftrightarrow 2x^2 - 6x = 0 \\Leftrightarrow x = 0 \\text{ ho\u1EB7c } x = 3.\\ S = \\int_{0}^{3} |(-x^2+4x) - (x^2-2x)| dx = \\int_{0}^{3} (-2x^2+6x) dx = \\left. \\left(-\\frac{2x^3}{3}+3x^2\\right) \\right|_{0}^{3} = -\\frac{54}{3}+27 = 9.'
+      exp: '\\text{PT hoành độ giao điểm: } x^2 - 2x = -x^2 + 4x \\Leftrightarrow 2x^2 - 6x = 0 \\Leftrightarrow x = 0 \\text{ hoặc } x = 3.\\\\ S = \\int_{0}^{3} |(-x^2+4x) - (x^2-2x)| dx = \\int_{0}^{3} (-2x^2+6x) dx = \\left. \\left(-\\frac{2x^3}{3}+3x^2\\right) \\right|_{0}^{3} = -\\frac{54}{3}+27 = 9.'
     },
     {
-      q: '\\text{Cho } I = \\int_{0}^{1} \\frac{x^3}{x^4+1} dx = \\frac{\\ln a}{4}. \\text{Gi\u00E1 tr\u1ECB c\u1EE7a } a \\text{ l\u00E0:}',
+      q: '\\text{Cho } I = \\int_{0}^{1} \\frac{x^3}{x^4+1} dx = \\frac{\\ln a}{4}. \\text{Giá trị của } a \\text{ là:}',
       opts: ['A. 1', 'B. 2', 'C. 4', 'D. 8'],
       ans: 1,
       lvl: 'VDC',
-      exp: '\\text{{\u0110}ặt } u = x^4+1 \\Rightarrow du = 4x^3 dx. \\, x=0\\to u=1; x=1\\to u=2.\\ I = \\int_{1}^{2} \\frac{du}{4u} = \\left. \\frac{\\ln u}{4} \\right|_{1}^{2} = \\frac{\\ln 2 - \\ln 1}{4} = \\frac{\\ln 2}{4} \\Rightarrow a = 2.'
+      exp: '\\text{Đặt } u = x^4+1 \\Rightarrow du = 4x^3 dx. \\, x=0\\to u=1; x=1\\to u=2.\\\\ I = \\int_{1}^{2} \\frac{du}{4u} = \\left. \\frac{\\ln u}{4} \\right|_{1}^{2} = \\frac{\\ln 2 - \\ln 1}{4} = \\frac{\\ln 2}{4} \\Rightarrow a = 2.'
     },
     {
-      q: '\\text{Bi\u1EBFt } \\int_{0}^{1} \\frac{dx}{\\sqrt{4-x^2}} = \\frac{\\pi}{a}. \\text{Gi\u00E1 tr\u1ECB c\u1EE7a } a \\text{ l\u00E0:}',
+      q: '\\text{Biết } \\int_{0}^{1} \\frac{dx}{\\sqrt{4-x^2}} = \\frac{\\pi}{a}. \\text{Giá trị của } a \\text{ là:}',
       opts: ['A. 3', 'B. 6', 'C. 2', 'D. 12'],
       ans: 1,
       lvl: 'VDC',
       exp: '\\int \\frac{dx}{\\sqrt{a^2-x^2}} = \\arcsin\\frac{x}{a} + C \\\\ I = \\int_{0}^{1} \\frac{dx}{\\sqrt{4-x^2}} = \\left. \\arcsin\\frac{x}{2} \\right|_{0}^{1} = \\arcsin\\frac12 - \\arcsin 0 = \\frac{\\pi}{6} \\Rightarrow a = 6.'
     },
     {
-      q: '\\text{Cho h\u00E0m s\u1ED1 } f(x) \\text{ li\u00EAn t\u1EE5c tr\u00EAn } \\mathbb{R} \\text{ th\u1ECFa m\u00E3n } f(x) + f(-x) = 2x^2, \\, \\forall x. \\text{ T\u00EDnh } \\int_{-1}^{1} f(x) dx.',
+      q: '\\text{Cho hàm số } f(x) \\text{ liên tục trên } \\mathbb{R} \\text{ thỏa mãn } f(x) + f(-x) = 2x^2, \\, \\forall x. \\text{ Tính } \\int_{-1}^{1} f(x) dx.',
       opts: ['A. \\frac{2}{3}', 'B. \\frac{4}{3}', 'C. 2', 'D. \\frac{1}{3}'],
       ans: 0,
       lvl: 'VDC',
-      exp: 'I = \\int_{-1}^{1} f(x) dx. \\text{ \u0110\u1EB7t } x = -t \\Rightarrow I = \\int_{-1}^{1} f(-t) dt = \\int_{-1}^{1} f(-x) dx.\\\\ \\Rightarrow 2I = \\int_{-1}^{1} [f(x)+f(-x)] dx = \\int_{-1}^{1} 2x^2 dx = \\left. \\frac{2x^3}{3} \\right|_{-1}^{1} = \\frac{2}{3} - \\left(-\\frac{2}{3}\\right) = \\frac{4}{3}.\\\\ \\Rightarrow I = \\frac{2}{3}.'
+      exp: 'I = \\int_{-1}^{1} f(x) dx. \\text{ Đặt } x = -t \\Rightarrow I = \\int_{-1}^{1} f(-t) dt = \\int_{-1}^{1} f(-x) dx.\\\\ \\Rightarrow 2I = \\int_{-1}^{1} [f(x)+f(-x)] dx = \\int_{-1}^{1} 2x^2 dx = \\left. \\frac{2x^3}{3} \\right|_{-1}^{1} = \\frac{2}{3} - \\left(-\\frac{2}{3}\\right) = \\frac{4}{3}.\\\\ \\Rightarrow I = \\frac{2}{3}.'
     }
   ];
 
   const answerLetters = ['A', 'B', 'C', 'D'];
   const answerKey = questions.map((q, i) => ({ q: i+1, answer: answerLetters[q.ans] }));
   const solutionTexts = questions.map((q, i) => 
-    `[${q.lvl}] ${q.exp} &mdash; <strong>${answerLetters[q.ans]}</strong>`
+    `[${q.lvl}] ${q.exp} — <strong>${answerLetters[q.ans]}</strong>`
   );
 
-  function renderLatex(text) {
+  function renderLatex(text, displayMode) {
     if (typeof katex === 'undefined') return text;
-    return text
-      .replace(/\\\(([\s\S]*?)\\\)/g, (_, expr) => {
-        try { return katex.renderToString(expr, { throwOnError: false, displayMode: false }); }
-        catch (e) { return expr; }
-      })
-      .replace(/\\\[([\s\S]*?)\\\]/g, (_, expr) => {
-        try { return katex.renderToString(expr, { throwOnError: false, displayMode: true }); }
-        catch (e) { return expr; }
-      });
+    try {
+      return katex.renderToString(text, { throwOnError: false, displayMode: !!displayMode });
+    } catch (e) {
+      return text;
+    }
   }
 
   const container = document.getElementById('questionsContainer');
@@ -311,10 +307,10 @@
         `<label data-idx="${oi}"><input type="radio" name="q${idx}" value="${oi}" /><span>${renderLatex(opt)}</span></label>`
       ).join('');
       div.innerHTML = `
-        <div class="q-text"><span class="q-badge">C\u00e2u ${idx + 1}</span>${qText}<span class="level">[${q.lvl}]</span></div>
+        <div class="q-text"><span class="q-badge">Câu ${idx + 1}</span>${qText}<span class="level">[${q.lvl}]</span></div>
         <div class="options" id="opts-${idx}">${optsHtml}</div>
         <div class="q-result" id="result-${idx}"></div>
-        <button class="check-btn" data-idx="${idx}">&#x1F50D; Ki\u1EC3m tra</button>
+        <button class="check-btn" data-idx="${idx}">🔍 Kiểm tra</button>
       `;
       container.appendChild(div);
     });
@@ -335,7 +331,7 @@
 
     if (!selected) {
       resultDiv.className = 'q-result show wrong';
-      resultDiv.innerHTML = '&#x26A0;&#xFE0F; Vui l\u00F2ng ch\u1ECDn m\u1ED9t \u0111\u00E1p \u00E1n.';
+      resultDiv.innerHTML = '⚠️ Vui lòng chọn một đáp án.';
       return;
     }
 
@@ -359,15 +355,15 @@
 
     let html;
     if (val === correct) {
-      html = '<strong>&#x2705; \u0110\u00FAng!</strong> ' + renderLatex(questions[idx].exp);
+      html = '<strong>✅ Đúng!</strong> ' + renderLatex(questions[idx].exp, true);
       resultDiv.className = 'q-result show correct';
     } else {
-      html = '<strong>&#x274C; Sai.</strong><br/>&#x1F4CC; \u0110\u00E1p \u00E1n \u0111\u00FAng: ' + renderLatex(questions[idx].opts[correct]) + '<br/>&#x1F4A1; ' + renderLatex(questions[idx].exp);
+      html = '<strong>❌ Sai.</strong><br/>📌 Đáp án đúng: ' + renderLatex(questions[idx].opts[correct]) + '<br/>💡 ' + renderLatex(questions[idx].exp, true);
       resultDiv.className = 'q-result show wrong';
     }
     resultDiv.innerHTML = html;
     e.target.disabled = true;
-    e.target.textContent = '&#x2705; \u0110\u00E3 ki\u1EC3m tra';
+    e.target.textContent = '✅ Đã kiểm tra';
   });
 
   function checkAllAnswers() {
@@ -384,7 +380,7 @@
       const r = document.getElementById(`result-${idx}`);
       r.className = 'q-result'; r.innerHTML = '';
       const b = q.querySelector('.check-btn');
-      b.disabled = false; b.textContent = '&#x1F50D; Ki\u1EC3m tra';
+      b.disabled = false; b.textContent = '🔍 Kiểm tra';
     });
   }
 </script>
