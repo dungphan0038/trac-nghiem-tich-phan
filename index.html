@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trắc nghiệm Tích phân - Toán 12</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #0891b2;
+      --primary-light: #22d3ee;
+      --primary-dark: #155e75;
+      --bg: #ecfeff;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --danger: #dc2626;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .header {
+      background: linear-gradient(135deg, #0e7490 0%, #0891b2 50%, #22d3ee 100%);
+      color: white; padding: 40px 24px 32px; text-align: center;
+    }
+    .header h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+    .header p { font-size: 15px; opacity: 0.9; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+    .header .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 12px; }
+    
+    .score-bar {
+      max-width: 900px; margin: -24px auto 28px; display: flex; align-items: center;
+      justify-content: space-between; background: var(--card); padding: 16px 24px;
+      border-radius: 14px; box-shadow: 0 4px 20px rgba(8,145,178,0.15);
+      border: 1px solid rgba(8,145,178,0.1); flex-wrap: wrap; gap: 12px;
+    }
+    .score-bar .score-title { font-size: 15px; font-weight: 700; }
+    .score-bar .score-stats { display: flex; gap: 20px; font-size: 13px; flex-wrap: wrap; }
+    .score-bar .score-stats span { display: flex; align-items: center; gap: 5px; }
+    .score-bar .score-stats .num { font-size: 20px; font-weight: 800; }
+    .score-bar .score-stats .num.green { color: var(--success); }
+    .score-bar .score-stats .num.red { color: var(--danger); }
+    .score-bar .score-stats .num.white { color: var(--text); }
+    
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px 60px; }
+    .btn { padding: 8px 18px; border: none; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(8,145,178,0.35); }
+    .btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+    .btn-outline:hover { background: #ecfeff; }
+    
+    .topic-intro { background: linear-gradient(135deg, #cffafe, #ecfeff); border: 1px solid #67e8f9; border-radius: 14px; padding: 18px 22px; margin-bottom: 20px; }
+    .topic-intro p { font-size: 14px; line-height: 1.6; color: #155e75; }
+    
+    .question { background: var(--card); border-radius: 14px; padding: 20px 24px; margin-bottom: 16px; border: 1px solid var(--border); border-left: 4px solid transparent; transition: all 0.25s; }
+    .question:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-left-color: var(--primary-light); }
+    .question .q-text { font-weight: 600; font-size: 15px; margin-bottom: 12px; line-height: 1.8; }
+    .question .q-text .q-badge { display: inline-block; background: #cffafe; color: var(--primary-dark); font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 20px; margin-right: 10px; }
+    .question .q-text .level { font-size: 11px; color: var(--text-light); font-weight: 400; margin-left: 6px; }
+    
+    .options { display: flex; flex-direction: column; gap: 5px; }
+    .options label { display: flex; align-items: flex-start; gap: 10px; padding: 8px 14px; border-radius: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; line-height: 1.6; border: 1.5px solid transparent; background: #f8fafc; }
+    .options label:hover { background: #cffafe; border-color: #67e8f9; transform: translateX(3px); }
+    .options input[type="radio"] { margin-top: 3px; accent-color: var(--primary); flex-shrink: 0; }
+    .options label.correct { background: #dcfce7 !important; color: #166534 !important; border-color: #86efac !important; }
+    .options label.wrong { background: #fef2f2 !important; color: #991b1b !important; border-color: #fca5a5 !important; }
+    
+    .q-result { margin-top: 10px; font-size: 14px; line-height: 1.7; padding: 12px 16px; border-radius: 10px; display: none; animation: fadeIn 0.3s ease; }
+    .q-result.show { display: block; }
+    .q-result.correct { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+    .q-result.wrong { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .check-btn { margin-top: 10px; padding: 8px 22px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+    .check-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(8,145,178,0.3); }
+    .check-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    
+    .katex { font-size: 1.1em; }
+    @media (max-width: 600px) {
+      .header h1 { font-size: 22px; }
+      .header { padding: 28px 16px 24px; }
+      .container { padding: 0 12px 40px; }
+      .question { padding: 16px; }
+      .score-bar { flex-direction: column; align-items: stretch; text-align: center; }
+      .score-bar .score-stats { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <h1>&#x1F4DD; B&#xC0;I T&#x1EACP TR&#x1EAE;C NGHI&#x1EC6;M</h1>
+  <p>T&#xED;ch ph&#xE2;n &mdash; To&#xE1;n 12 (Gi&#x1EA3;i t&#xED;ch, Ch&#x1B0;&#x1A1;ng 3)<br/>20 c&#xE2;u h&#x1ECF;i tr&#x1EAF;c nghi&#x1EC7;m t&#x1EEB; c&#x1A1; b&#x1EA3;n &#x111;&#x1EBF;n n&#xE2;ng cao, c&#xF3; &#x111;&#xE1;p &#xE1;n v&#xE0; l&#x1EDD;i gi&#x1EA3;i chi ti&#x1EBF;t.</p>
+  <span class="badge">&#x1F4DA; Ch&#x1B0;&#x1A1;ng 3 - Gi&#x1EA3;i t&#xED;ch 12</span>
+</header>
+
+<div class="container">
+  <div class="score-bar">
+    <div class="score-title">&#x1F4CA; K&#x1EBE;t qu&#x1EA3; c&#x1EE7;a b&#x1EA1;n</div>
+    <div class="score-stats">
+      <span>&#x2705; &#x111;&#xFA;ng: <span class="num green" id="scoreCorrect">0</span></span>
+      <span>&#x274C; Sai: <span class="num red" id="scoreWrong">0</span></span>
+      <span>&#x1F4DD; &#x111;&#xE3; l&#xE0;m: <span class="num white" id="scoreTotal">0</span>/<span class="num white" id="scoreTotalAll">20</span></span>
+    </div>
+    <div class="actions">
+      <button class="btn btn-outline" onclick="resetAll()">&#x1F504; L&#xE0;m l&#x1EA1;i</button>
+    </div>
+  </div>
+
+  <div class="topic-intro">
+    <p><strong>Ph&#x1EA7;n I &mdash; TR&#x1EAE;C NGHI&#x1EC6;M (20 c&#xE2;u):</strong> G&#x1ED3;m 5 c&#xE2;u Nh&#x1EAD;n bi&#x1EBF;t, 5 c&#xE2;u Th&#x1EAF;ng hi&#x1EC3;u, 5 c&#xE2;u V&#x1EAD;n d&#x1EE5;ng, 5 c&#xE2;u V&#x1EAD;n d&#x1EE5;ng cao. Ch&#x1ECD;n &#x111;&#xE1;p &#xE1;n v&#xE0; nh&#x1EA5;n <strong>&#x201C;Ki&#x1EC3;m tra&#x201D;</strong> &#x111;&#x1EC3; xem l&#x1EDD;i gi&#x1EA3;i.</p>
+  </div>
+
+  <div id="questionsContainer"></div>
+
+  <div style="text-align:center; margin-top: 20px;">
+    <button class="btn btn-primary" style="padding:12px 40px; font-size:15px;" onclick="checkAllAnswers()">&#x1F4CB; N&#x1ED9;p b&#xE0;i t&#x1EA5;t c&#x1EA3;</button>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    // ========== NHẬN BIẾT (Câu 1-5) ==========
+    {
+      q: '\\text{T\u00ECm nguy\u00EAn h\u00E0m c\u1EE7a h\u00E0m s\u1ED1 } f(x) = x^4.',
+      opts: ['A. \\int x^4 dx = 4x^3 + C', 'B. \\int x^4 dx = \\frac{x^5}{5} + C', 'C. \\int x^4 dx = x^5 + C', 'D. \\int x^4 dx = \\frac{x^4}{4} + C'],
+      ans: 1,
+      lvl: 'NB',
+      exp: '\\int x^n dx = \\frac{x^{n+1}}{n+1} + C \\ (n \\neq -1). \\text{ V\u1EDBi } n=4: \\int x^4 dx = \\frac{x^5}{5} + C.'
+    },
+    {
+      q: '\\text{T\u00EDch ph\u00E2n } I = \\int_{1}^{2} 3x^2 dx \\text{ b\u1EB1ng:}',
+      opts: ['A. 6', 'B. 7', 'C. 8', 'D. 9'],
+      ans: 1,
+      lvl: 'NB',
+      exp: '\\int_{1}^{2} 3x^2 dx = \\left. x^3 \\right|_{1}^{2} = 2^3 - 1^3 = 8 - 1 = 7.'
+    },
+    {
+      q: '\\text{Cho } \\int_{a}^{b} f(x) dx = 5 \\text{ v\u00E0 } \\int_{b}^{c} f(x) dx = 3. \\text{ T\u00EDnh } \\int_{a}^{c} f(x) dx.',
+      opts: ['A. 2', 'B. 8', 'C. 15', 'D. -2'],
+      ans: 1,
+      lvl: 'NB',
+      exp: '\\int_{a}^{c} f(x) dx = \\int_{a}^{b} f(x) dx + \\int_{b}^{c} f(x) dx = 5 + 3 = 8.'
+    },
+    {
+      q: '\\text{Nguy\u00EAn h\u00E0m c\u1EE7a h\u00E0m s\u1ED1 } f(x) = \\cos x \\text{ l\u00E0:}',
+      opts: ['A. \\sin x + C', 'B. -\\sin x + C', 'C. \\tan x + C', 'D. -\\cos x + C'],
+      ans: 0,
+      lvl: 'NB',
+      exp: '\\int \\cos x \\, dx = \\sin x + C.'
+    },
+    {
+      q: '\\text{T\u00EDch ph\u00E2n } I = \\int_{0}^{\\pi} \\sin x \\, dx \\text{ b\u1EB1ng:}',
+      opts: ['A. 0', 'B. 1', 'C. 2', 'D. -1'],
+      ans: 2,
+      lvl: 'NB',
+      exp: '\\int_{0}^{\\pi} \\sin x \\, dx = \\left. -\\cos x \\right|_{0}^{\\pi} = -\\cos\\pi - (-\\cos 0) = -(-1) + 1 = 2.'
+    },
+    // ========== THÔNG HIỂU (Câu 6-10) ==========
+    {
+      q: '\\text{T\u00EDch ph\u00E2n } I = \\int_{0}^{1} e^{2x} dx \\text{ b\u1EB1ng:}',
+      opts: ['A. \\frac{e^2 - 1}{2}', 'B. e^2 - 1', 'C. \\frac{e^2 + 1}{2}', 'D. e^2'],
+      ans: 0,
+      lvl: 'TH',
+      exp: '\\int_{0}^{1} e^{2x} dx = \\left. \\frac{e^{2x}}{2} \\right|_{0}^{1} = \\frac{e^2}{2} - \\frac{1}{2} = \\frac{e^2 - 1}{2}.'
+    },
+    {
+      q: '\\text{Cho } \\int_{0}^{2} f(x) dx = 4. \\text{ T\u00EDnh } \\int_{0}^{2} [3f(x) - 2] dx.',
+      opts: ['A. 10', 'B. 8', 'C. 12', 'D. 6'],
+      ans: 1,
+      lvl: 'TH',
+      exp: '\\int_{0}^{2} [3f(x) - 2] dx = 3\\int_{0}^{2} f(x) dx - \\int_{0}^{2} 2 dx = 3\\cdot4 - \\left. 2x \\right|_{0}^{2} = 12 - 4 = 8.'
+    },
+    {
+      q: '\\int_{0}^{1} x(x^2 + 1)^4 dx \\text{ b\u1EB1ng:}',
+      opts: ['A. \\frac{31}{5}', 'B. \\frac{31}{10}', 'C. \\frac{31}{15}', 'D. \\frac{31}{2}'],
+      ans: 1,
+      lvl: 'TH',
+      exp: '\\text{{\u0110}ặt } u = x^2+1 \\Rightarrow du = 2x dx. \\text{ Khi } x=0 \\to u=1; x=1 \\to u=2.\\ I = \\int_{1}^{2} \\frac{u^4}{2} du = \\left. \\frac{u^5}{10} \\right|_{1}^{2} = \\frac{32-1}{10} = \\frac{31}{10}.'
+    },
+    {
+      q: '\\text{H\u1ECD} nguy\u00EAn h\u00E0m c\u1EE7a h\u00E0m s\u1ED1 } f(x) = \\frac{1}{x} \\ (x > 0) \\text{ l\u00E0:}',
+      opts: ['A. \\ln|x| + C', 'B. \\ln x + C', 'C. -\\frac{1}{x^2} + C', 'D. \\frac{1}{2x^2} + C'],
+      ans: 1,
+      lvl: 'TH',
+      exp: '\\int \\frac{1}{x} dx = \\ln x + C \\ (\\text{v\u1EDBi } x > 0). \\text{T\u1ED5ng qu\u00E1t: } \\int \\frac{1}{x} dx = \\ln|x| + C.'
+    },
+    {
+      q: '\\text{N\u1EBFu } \\int_{0}^{3} f(x) dx = 2 \\text{ v\u00E0 } \\int_{0}^{3} g(x) dx = -1, \\text{ th\u00EC } \\int_{0}^{3} [f(x) - 2g(x)] dx \\text{ b\u1EB1ng:}',
+      opts: ['A. 0', 'B. 4', 'C. 1', 'D. -4'],
+      ans: 1,
+      lvl: 'TH',
+      exp: '\\int_{0}^{3} [f(x) - 2g(x)] dx = \\int_{0}^{3} f(x) dx - 2\\int_{0}^{3} g(x) dx = 2 - 2(-1) = 4.'
+    },
+    // ========== VẬN DỤNG (Câu 11-15) ==========
+    {
+      q: '\\text{T\u00EDch ph\u00E2n } I = \\int_{1}^{e} \\frac{\\ln x}{x} dx \\text{ b\u1EB1ng:}',
+      opts: ['A. \\frac{1}{2}', 'B. 1', 'C. \\frac{1}{e}', 'D. \\frac{1}{3}'],
+      ans: 0,
+      lvl: 'VD',
+      exp: '\\text{{\u0110}ặt } u = \\ln x \\Rightarrow du = \\frac{1}{x}dx. \\, x=1\\to u=0; x=e\\to u=1.\\ I = \\int_{0}^{1} u \\, du = \\left. \\frac{u^2}{2} \\right|_{0}^{1} = \\frac{1}{2}.'
+    },
+    {
+      q: '\\text{T\u00EDnh di\u1EC7n t\u00EDch h\u00ECnh ph\u1EB3ng gi\u1EDBi h\u1EA1n b\u1EDFi } y = x^2 - 1, \\, y = 0, \\, x = 0, \\, x = 2.',
+      opts: ['A. \\frac{2}{3}', 'B. \\frac{4}{3}', 'C. 2', 'D. \\frac{8}{3}'],
+      ans: 2,
+      lvl: 'VD',
+      exp: 'S = \\int_{0}^{2} |x^2 - 1| dx = \\int_{0}^{1} (1-x^2) dx + \\int_{1}^{2} (x^2-1) dx \\\ = \\left[x-\\frac{x^3}{3}\\right]_{0}^{1} + \\left[\\frac{x^3}{3} - x\\right]_{1}^{2} \\ = \\left(1-\\frac13\\right) + \\left(\\frac83-2\\right) - \\left(\\frac13-1\\right) = 2.'
+    },
+    {
+      q: '\\text{Cho } \\int_{0}^{\\pi} x\\sin x \\, dx = a\\pi. \\text{ Gi\u00E1 tr\u1ECB c\u1EE7a } a \\text{ l\u00E0:}',
+      opts: ['A. 1', 'B. 2', 'C. \\frac12', 'D. \\frac14'],
+      ans: 0,
+      lvl: 'VD',
+      exp: '\\text{D\u00F9ng t\u00EDch ph\u00E2n t\u1EEBng ph\u1EA7n: } \\begin{cases} u = x \\Rightarrow du = dx \\\\ dv = \\sin x \\, dx \\Rightarrow v = -\\cos x \\end{cases} \\\\ \\int_{0}^{\\pi} x\\sin x \\, dx = \\left. -x\\cos x \\right|_{0}^{\\pi} + \\int_{0}^{\\pi} \\cos x \\, dx \\\\ = (-\\pi\\cos\\pi - 0) + \\left. \\sin x \\right|_{0}^{\\pi} = \\pi + 0 = \\pi \\Rightarrow a = 1.'
+    },
+    {
+      q: '\\text{Th\u1EC3 t\u00EDch kh\u1ED1i tr\u00F2n xoay khi quay h\u00ECnh ph\u1EB3ng gi\u1EDBi h\u1EA1n b\u1EDFi } y = \\sqrt{x}, \\, y = 0, \\, x = 4 \\text{ quanh tr\u1EE5c Ox l\u00E0:}',
+      opts: ['A. 8\\pi', 'B. 4\\pi', 'C. 16\\pi', 'D. 2\\pi'],
+      ans: 0,
+      lvl: 'VD',
+      exp: 'V = \\pi \\int_{0}^{4} (\\sqrt{x})^2 dx = \\pi \\int_{0}^{4} x \\, dx = \\pi \\left. \\frac{x^2}{2} \\right|_{0}^{4} = \\pi \\cdot \\frac{16}{2} = 8\\pi.'
+    },
+    {
+      q: '\\text{T\u00EDch ph\u00E2n } I = \\int_{0}^{\\frac{\\pi}{2}} \\sin^2 x \\, dx \\text{ b\u1EB1ng:}',
+      opts: ['A. \\frac{\\pi}{4}', 'B. \\frac{\\pi}{2}', 'C. \\frac{\\pi}{8}', 'D. \\frac{\\pi}{6}'],
+      ans: 0,
+      lvl: 'VD',
+      exp: '\\sin^2 x = \\frac{1-\\cos 2x}{2} \\Rightarrow I = \\int_{0}^{\\frac{\\pi}{2}} \\frac{1-\\cos 2x}{2} dx = \\left. \\frac{1}{2}\\left(x - \\frac{\\sin 2x}{2}\\right) \\right|_{0}^{\\frac{\\pi}{2}} = \\frac{1}{2} \\cdot \\frac{\\pi}{2} = \\frac{\\pi}{4}.'
+    },
+    // ========== VẬN DỤNG CAO (Câu 16-20) ==========
+    {
+      q: '\\text{Cho } \\int_{0}^{1} \\frac{dx}{x^2 + 1} = \\frac{\\pi}{k}. \\text{Gi\u00E1 tr\u1ECB c\u1EE7a } k \\text{ l\u00E0:}',
+      opts: ['A. 2', 'B. 4', 'C. 1', 'D. 6'],
+      ans: 1,
+      lvl: 'VDC',
+      exp: '\\int \\frac{dx}{x^2+1} = \\arctan x + C \\Rightarrow \\int_{0}^{1} \\frac{dx}{x^2+1} = \\left. \\arctan x \\right|_{0}^{1} = \\frac{\\pi}{4} - 0 = \\frac{\\pi}{4} \\Rightarrow k = 4.'
+    },
+    {
+      q: '\\text{Di\u1EC7n t\u00EDch h\u00ECnh ph\u1EB3ng gi\u1EDBi h\u1EA1n b\u1EDFi } y = x^2 - 2x \\text{ v\u00E0 } y = -x^2 + 4x \\text{ l\u00E0:}',
+      opts: ['A. 9', 'B. 12', 'C. 8', 'D. 6'],
+      ans: 0,
+      lvl: 'VDC',
+      exp: '\\text{PT ho\u00E0nh \u0111\u1ED9 giao \u0111i\u1EC3m: } x^2 - 2x = -x^2 + 4x \\Leftrightarrow 2x^2 - 6x = 0 \\Leftrightarrow x = 0 \\text{ ho\u1EB7c } x = 3.\\ S = \\int_{0}^{3} |(-x^2+4x) - (x^2-2x)| dx = \\int_{0}^{3} (-2x^2+6x) dx = \\left. \\left(-\\frac{2x^3}{3}+3x^2\\right) \\right|_{0}^{3} = -\\frac{54}{3}+27 = 9.'
+    },
+    {
+      q: '\\text{Cho } I = \\int_{0}^{1} \\frac{x^3}{x^4+1} dx = \\frac{\\ln a}{4}. \\text{Gi\u00E1 tr\u1ECB c\u1EE7a } a \\text{ l\u00E0:}',
+      opts: ['A. 1', 'B. 2', 'C. 4', 'D. 8'],
+      ans: 1,
+      lvl: 'VDC',
+      exp: '\\text{{\u0110}ặt } u = x^4+1 \\Rightarrow du = 4x^3 dx. \\, x=0\\to u=1; x=1\\to u=2.\\ I = \\int_{1}^{2} \\frac{du}{4u} = \\left. \\frac{\\ln u}{4} \\right|_{1}^{2} = \\frac{\\ln 2 - \\ln 1}{4} = \\frac{\\ln 2}{4} \\Rightarrow a = 2.'
+    },
+    {
+      q: '\\text{Bi\u1EBFt } \\int_{0}^{1} \\frac{dx}{\\sqrt{4-x^2}} = \\frac{\\pi}{a}. \\text{Gi\u00E1 tr\u1ECB c\u1EE7a } a \\text{ l\u00E0:}',
+      opts: ['A. 3', 'B. 6', 'C. 2', 'D. 12'],
+      ans: 1,
+      lvl: 'VDC',
+      exp: '\\int \\frac{dx}{\\sqrt{a^2-x^2}} = \\arcsin\\frac{x}{a} + C \\\\ I = \\int_{0}^{1} \\frac{dx}{\\sqrt{4-x^2}} = \\left. \\arcsin\\frac{x}{2} \\right|_{0}^{1} = \\arcsin\\frac12 - \\arcsin 0 = \\frac{\\pi}{6} \\Rightarrow a = 6.'
+    },
+    {
+      q: '\\text{Cho h\u00E0m s\u1ED1 } f(x) \\text{ li\u00EAn t\u1EE5c tr\u00EAn } \\mathbb{R} \\text{ th\u1ECFa m\u00E3n } f(x) + f(-x) = 2x^2, \\, \\forall x. \\text{ T\u00EDnh } \\int_{-1}^{1} f(x) dx.',
+      opts: ['A. \\frac{2}{3}', 'B. \\frac{4}{3}', 'C. 2', 'D. \\frac{1}{3}'],
+      ans: 0,
+      lvl: 'VDC',
+      exp: 'I = \\int_{-1}^{1} f(x) dx. \\text{ \u0110\u1EB7t } x = -t \\Rightarrow I = \\int_{-1}^{1} f(-t) dt = \\int_{-1}^{1} f(-x) dx.\\\\ \\Rightarrow 2I = \\int_{-1}^{1} [f(x)+f(-x)] dx = \\int_{-1}^{1} 2x^2 dx = \\left. \\frac{2x^3}{3} \\right|_{-1}^{1} = \\frac{2}{3} - \\left(-\\frac{2}{3}\\right) = \\frac{4}{3}.\\\\ \\Rightarrow I = \\frac{2}{3}.'
+    }
+  ];
+
+  const answerLetters = ['A', 'B', 'C', 'D'];
+  const answerKey = questions.map((q, i) => ({ q: i+1, answer: answerLetters[q.ans] }));
+  const solutionTexts = questions.map((q, i) => 
+    `[${q.lvl}] ${q.exp} &mdash; <strong>${answerLetters[q.ans]}</strong>`
+  );
+
+  function renderLatex(text) {
+    if (typeof katex === 'undefined') return text;
+    return text
+      .replace(/\\\(([\s\S]*?)\\\)/g, (_, expr) => {
+        try { return katex.renderToString(expr, { throwOnError: false, displayMode: false }); }
+        catch (e) { return expr; }
+      })
+      .replace(/\\\[([\s\S]*?)\\\]/g, (_, expr) => {
+        try { return katex.renderToString(expr, { throwOnError: false, displayMode: true }); }
+        catch (e) { return expr; }
+      });
+  }
+
+  const container = document.getElementById('questionsContainer');
+  const scoreState = { correct: 0, wrong: 0, total: 0, done: new Set() };
+  const scoreCorrect = document.getElementById('scoreCorrect');
+  const scoreWrong = document.getElementById('scoreWrong');
+  const scoreTotal = document.getElementById('scoreTotal');
+
+  function updateScore() {
+    scoreCorrect.textContent = scoreState.correct;
+    scoreWrong.textContent = scoreState.wrong;
+    scoreTotal.textContent = scoreState.total;
+  }
+
+  function buildQuiz() {
+    questions.forEach((q, idx) => {
+      const div = document.createElement('div');
+      div.className = 'question';
+      const qText = renderLatex(q.q);
+      const optsHtml = q.opts.map((opt, oi) =>
+        `<label data-idx="${oi}"><input type="radio" name="q${idx}" value="${oi}" /><span>${renderLatex(opt)}</span></label>`
+      ).join('');
+      div.innerHTML = `
+        <div class="q-text"><span class="q-badge">C\u00e2u ${idx + 1}</span>${qText}<span class="level">[${q.lvl}]</span></div>
+        <div class="options" id="opts-${idx}">${optsHtml}</div>
+        <div class="q-result" id="result-${idx}"></div>
+        <button class="check-btn" data-idx="${idx}">&#x1F50D; Ki\u1EC3m tra</button>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function initQuiz() { buildQuiz(); }
+
+  if (typeof katex !== 'undefined') { initQuiz(); } else {
+    const ck = setInterval(() => { if (typeof katex !== 'undefined') { clearInterval(ck); initQuiz(); } }, 50);
+  }
+
+  container.addEventListener('click', (e) => {
+    if (!e.target.classList.contains('check-btn')) return;
+    const idx = parseInt(e.target.dataset.idx);
+    const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+    const resultDiv = document.getElementById(`result-${idx}`);
+    const labels = document.querySelectorAll(`#opts-${idx} label`);
+
+    if (!selected) {
+      resultDiv.className = 'q-result show wrong';
+      resultDiv.innerHTML = '&#x26A0;&#xFE0F; Vui l\u00F2ng ch\u1ECDn m\u1ED9t \u0111\u00E1p \u00E1n.';
+      return;
+    }
+
+    const alreadyDone = scoreState.done.has(idx);
+    const val = parseInt(selected.value);
+    const correct = questions[idx].ans;
+
+    labels.forEach((l, i) => {
+      l.classList.remove('correct', 'wrong');
+      if (i === correct) l.classList.add('correct');
+      if (i === val && val !== correct) l.classList.add('wrong');
+    });
+
+    if (!alreadyDone) {
+      scoreState.done.add(idx);
+      scoreState.total++;
+      if (val === correct) scoreState.correct++;
+      else scoreState.wrong++;
+      updateScore();
+    }
+
+    let html;
+    if (val === correct) {
+      html = '<strong>&#x2705; \u0110\u00FAng!</strong> ' + renderLatex(questions[idx].exp);
+      resultDiv.className = 'q-result show correct';
+    } else {
+      html = '<strong>&#x274C; Sai.</strong><br/>&#x1F4CC; \u0110\u00E1p \u00E1n \u0111\u00FAng: ' + renderLatex(questions[idx].opts[correct]) + '<br/>&#x1F4A1; ' + renderLatex(questions[idx].exp);
+      resultDiv.className = 'q-result show wrong';
+    }
+    resultDiv.innerHTML = html;
+    e.target.disabled = true;
+    e.target.textContent = '&#x2705; \u0110\u00E3 ki\u1EC3m tra';
+  });
+
+  function checkAllAnswers() {
+    document.querySelectorAll('.check-btn:not(:disabled)').forEach(b => b.click());
+    document.querySelector('.score-bar').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function resetAll() {
+    scoreState.correct = 0; scoreState.wrong = 0; scoreState.total = 0;
+    scoreState.done.clear(); updateScore();
+    document.querySelectorAll('.question').forEach((q, idx) => {
+      q.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+      q.querySelectorAll('.options label').forEach(l => l.classList.remove('correct', 'wrong'));
+      const r = document.getElementById(`result-${idx}`);
+      r.className = 'q-result'; r.innerHTML = '';
+      const b = q.querySelector('.check-btn');
+      b.disabled = false; b.textContent = '&#x1F50D; Ki\u1EC3m tra';
+    });
+  }
+</script>
+
+</body>
+</html>
